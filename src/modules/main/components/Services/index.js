@@ -20,6 +20,7 @@ export default function index() {
     console.log('So vit: ', services);
 
     const renderItem = ({ item }) => {
+        console.log(item)
         return (
             <View>
                 <Service item={item} />

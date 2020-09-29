@@ -9,6 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // Reducers 
 import authReducer from '../modules/auth/reducers';
 import registerReducer from '../modules/register/reducers'
+import cartsReducer from '../modules/carts/reducers'
 // Saga (root)
 import rootSagas from './rootSagas';
 
@@ -18,7 +19,8 @@ import AppNavigator from '../screens/AppNavigator'
 // ROOT REDUCER
 const rootReducer = combineReducers({
   authReducer,
-  registerReducer
+  registerReducer,
+  cartsReducer
 });
 
 // MIDDLEWARE

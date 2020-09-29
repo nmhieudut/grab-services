@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import color from '../../../constants/Colours'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FIcon from 'react-native-vector-icons/AntDesign'
 import Loading from '../../../components/Loading'
@@ -16,7 +17,7 @@ import FirestoreServices from '../../../services/FirestoreServices';
 const styles = StyleSheet.create({
   header: {
     height: 60,
-    backgroundColor: '#00bec5',
+    backgroundColor: `${color.PRIMARY}`,
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',

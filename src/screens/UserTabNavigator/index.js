@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FIcon from 'react-native-vector-icons/FontAwesome5'
+import color from '../../constants/Colours'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import VendorsStackNavigator from './VendorsStackNavigator'
 import CartScreen from './CartScreen';
@@ -14,7 +15,7 @@ const Tab = createMaterialBottomTabNavigator();
 const TabNavigator = () => {
     return (
         <Tab.Navigator
-            activeColor="#00bec5"
+            activeColor={color.PRIMARY}
             inactiveColor="black"
             shifting={false}
             barStyle={{ backgroundColor: 'white' }}>

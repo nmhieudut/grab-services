@@ -6,6 +6,7 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
+import color from '../../../../constants/Colours'
 import FIcon from 'react-native-vector-icons/Entypo'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FirestoreServices from '../../../../services/FirestoreServices';
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         borderRadius: 30,
-        backgroundColor: '#00bec5',
+        backgroundColor: `${color.PRIMARY}`,
         padding: 10
     },
     workersIcon: {
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         borderRadius: 30,
-        backgroundColor: '#00bec5',
+        backgroundColor: `${color.PRIMARY}`,
         paddingHorizontal: 15,
         paddingTop: 9
     },
@@ -76,9 +77,9 @@ export default function index() {
     //render items
     const renderItem = ({ item }) => {
         return (
-            <View>
+            <>
                 <Vendor vendor={item} />
-            </View>
+            </>
         );
     };
     return (

@@ -12,17 +12,18 @@ const styles = StyleSheet.create({
   },
 });
 export default function Service({item}) {
-  const navigation = useNavigation();
+  const navigation = useNavigation(); 
   return (
     <View style={styles.item}>
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate('ServicesDetailsScreen', {item: item})
+          navigation.navigate('ServicesDetailsScreen', {serviceId: item.id})
         }>
         <Card style={{borderRadius: 20}}>
           <Card.Cover source={{uri: item.service.pictureUrl}} />
           <Card.Title
-            title={item.service.name}
+            titleStyle={{color:`${color.PRIMARY}`}}
+            title={item.service.name.toUpperCase()}
             subtitle={`Thời gian: ${item.service.duration} phút.`}
           />
           <Card.Content>

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {List, Avatar, Checkbox} from 'react-native-paper';
 export default function VendorsDetailScreen({route, navigation}) {
-  console.log('route:', route);
   const [checked, setChecked] = React.useState(false);
   const data = [
     {

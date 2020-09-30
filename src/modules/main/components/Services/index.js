@@ -17,10 +17,8 @@ export default function index() {
             setServices(services);
         });
     }, [])
-    console.log('So vit: ', services);
 
     const renderItem = ({ item }) => {
-        console.log(item)
         return (
             <View>
                 <Service item={item} />

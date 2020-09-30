@@ -1,15 +1,15 @@
 import React from 'react';
-import {View, Text, ScrollView, ToastAndroid} from 'react-native';
-import {Card, Title, Paragraph, Chip, Button} from 'react-native-paper';
-import color from '../../../../constants/Colours';
+import {View, ScrollView, ToastAndroid} from 'react-native';
+import {Card, Paragraph, Button} from 'react-native-paper';
+import color from '../../../../../constants/Colours';
 import {useDispatch} from 'react-redux';
-import {addItemAction} from '../../../../modules/carts/actions';
+import {addItemAction} from '../../../../carts/actions';
 
 export default function FirstRouteScreen(props) {
   var {data, id} = props;
   data.id = id;
   const item = {...data};
-  console.log('data:', item);
+  console.log('dataServices:', props);
   const dispatch = useDispatch();
   return (
     <>

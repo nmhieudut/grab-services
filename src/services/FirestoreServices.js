@@ -96,9 +96,34 @@ function getServicesDetail(id) {
       });
   });
 }
+function createOrder(order) {
+  return new Promise((resolve, reject) => {
+    firestore()
+      .collection('Orders')
+      .add(order)
+      .then((ref) => {
+        // OK
+        // TODO: Send a email to customers (THANK YOU)
+        // TODO: Send notification to call center
+        ref
+          .get()
+          .then((documentSnapshot) => {
+            let createdOrder = documentSnapshot.data();
+            createdOrder.id = documentSnapshot.id;
+            resolve(createdOrder);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((error) => {
+        console.log(error);
+        reject(error);
+      });
+  });
+}
 export default {
   getVendors,
   getServices,
   getServicesDetail,
   getServicesOfVendor,
+  createOrder,
 };

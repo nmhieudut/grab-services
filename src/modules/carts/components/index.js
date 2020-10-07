@@ -1,12 +1,14 @@
 import React from 'react';
 import {View, Text, FlatList} from 'react-native';
-import {Appbar, List, IconButton, Avatar, Button} from 'react-native-paper';
+import {List, IconButton, Avatar, Button} from 'react-native-paper';
 import color from '../../../constants/Colours';
+import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
 import {removeItemAction} from '../actions';
 
 const Carts = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const data = useSelector((state) => state.cartsReducer.addedItems);
   console.log('cart', data);
 
@@ -43,11 +45,6 @@ const Carts = () => {
   };
   return (
     <View style={{flex: 1}}>
-      <View>
-        <Appbar.Header style={{backgroundColor: `${color.PRIMARY}`}}>
-          <Appbar.Content title="Giỏ hàng" />
-        </Appbar.Header>
-      </View>
       <View style={{flex: 8, backgroundColor: '#eeeeee'}}>
         <FlatList
           data={data}
@@ -68,13 +65,16 @@ const Carts = () => {
           </Text>
         </View>
         <View style={{marginTop: 5}}>
-          <Button
-            icon="cart"
-            style={{backgroundColor: `${color.PRIMARY}`}}
-            mode="contained"
-            onPress={() => console.log('Pressed')}>
-            Tiến hành đặt hàng
-          </Button>
+            <Button
+              icon="cart"
+              disabled={data.length === 0}
+              style={{backgroundColor: `${color.PRIMARY}`}}
+              mode="contained"
+              onPress={() =>
+                navigation.navigate('CartDetailScreen', {total: getTotal()})
+              }>
+              Tiến hành đặt hàng
+            </Button>
         </View>
       </View>
     </View>

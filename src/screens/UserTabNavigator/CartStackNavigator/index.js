@@ -1,18 +1,20 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import ServicesDetailsScreen from './ServicesDetailsScreen';
-import ServicesScreen from './ServicesScreen';
+import CartsScreen from './CartsScreen';
+import CartDetailScreen from './CartDetailScreen';
+
 import color from '../../../constants/Colours';
+
 const Stack = createStackNavigator();
 
-const ServicesStackNavigator = () => {
+export default function CartStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="ServicesScreen">
+    <Stack.Navigator initialRouteName="CartsScreen">
       <Stack.Screen
-        name="ServicesScreen"
-        component={ServicesScreen}
+        name="CartsScreen"
+        component={CartsScreen}
         options={{
-          title: 'Sản phẩm & Dịch vụ',
+          title: 'GIỎ HÀNG',
           headerShown: true,
           headerStyle: {
             backgroundColor: `${color.PRIMARY}`,
@@ -25,10 +27,10 @@ const ServicesStackNavigator = () => {
         }}
       />
       <Stack.Screen
-        name="ServicesDetailsScreen"
-        component={ServicesDetailsScreen}
+        name="CartDetailScreen"
+        component={CartDetailScreen}
         options={{
-          title: 'Chi tiết sản phẩm',
+          title: 'CHI TIẾT ĐƠN HÀNG',
           headerStyle: {
             backgroundColor: `${color.PRIMARY}`,
             elevation: 0,
@@ -38,6 +40,4 @@ const ServicesStackNavigator = () => {
       />
     </Stack.Navigator>
   );
-};
-
-export default ServicesStackNavigator;
+}

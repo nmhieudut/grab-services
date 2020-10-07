@@ -4,7 +4,7 @@ import FIcon from 'react-native-vector-icons/FontAwesome5';
 import color from '../../constants/Colours';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import VendorsStackNavigator from './VendorsStackNavigator';
-import CartScreen from './CartScreen';
+import CartStackNavigator from './CartStackNavigator';
 import ProfileScreen from './ProfileScreen';
 import ServicesStackNavigator from './ServicesStackNavigator';
 import MapScreen from './MapScreen';
@@ -51,8 +51,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="CartScreen"
-        component={CartScreen}
+        name="CartStackNavigator"
+        component={CartStackNavigator}
         options={{
           title: 'Giỏ hàng',
           tabBarBadge: addedItems.length > 0 ? addedItems.length : false,

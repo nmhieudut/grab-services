@@ -2,15 +2,12 @@ import * as ActionTypes from '../actions/types';
 
 const initialState = {
   addedItems: [],
-  total: 0,
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case ActionTypes.ADD_ITEM:
-      var found = [...state.addedItems].find(
-        (item) => item.id === action.id,
-      );
+      var found = [...state.addedItems].find((item) => item.id === action.id);
       if (found) {
         found.quantity++;
         return {
@@ -36,6 +33,10 @@ export default function (state = initialState, action) {
         ...state,
         addedItems: addedItems,
       };
+    // CLEAR CART
+    // ------------------------------------------------------------------------
+    case ActionTypes.CLEAR_CART:
+      return initialState;
     default:
       return {
         ...state,

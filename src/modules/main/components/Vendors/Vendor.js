@@ -6,9 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
   item: {
-    margin: 20,
+    margin: 10,
     padding: 10,
-    borderRadius: 20,
   },
 });
 export default function Vendor({vendor}) {

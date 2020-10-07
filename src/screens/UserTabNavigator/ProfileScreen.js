@@ -8,7 +8,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-import color from '../../constants/Colours'
+import color from '../../constants/Colours';
 import Icon from 'react-native-vector-icons/AntDesign';
 import moment from 'moment';
 import {useDispatch, useSelector} from 'react-redux';
@@ -71,9 +71,8 @@ const styles = StyleSheet.create({
 
 const ProfileScreen = ({navigation}) => {
   const [userProps, setUserProps] = useState({});
-
+  const [isLoading, setIsLoading] = useState(true);
   const uri = 'https://www.w3schools.com/w3images/avatar2.png';
-
   const dispatch = useDispatch();
 
   //REDUX
@@ -83,6 +82,7 @@ const ProfileScreen = ({navigation}) => {
   useEffect(() => {
     ProfileServices.getProfile(user.uid).then((result) => {
       setUserProps(result);
+      setIsLoading(true);
       console.log('user2:', userProps);
     });
   }, []);
@@ -96,99 +96,105 @@ const ProfileScreen = ({navigation}) => {
   };
   return (
     <ScrollView>
-      <SafeAreaView style={{flex: 1}}>
-        {/* Header */}
-        <View style={styles.picAndName}>
-          <View style={styles.imgContainer}>
-            <Image style={styles.image} source={{uri: uri}}></Image>
-          </View>
-          <View style={styles.name}>
-            <Text style={{fontSize: 26, color: 'white'}}>
-              {userProps.displayName}
-            </Text>
-          </View>
-        </View>
-        {/* Body */}
-        <View style={styles.info}>
-          <View style={styles.detailInfo}>
-            <Text style={styles.font}>Loại tài khoản</Text>
-            <TouchableOpacity style={{flexDirection: 'row'}}>
-              <Text style={styles.infoView}>{userProps.roles}</Text>
-              <Icon
-                name="right"
-                size={16}
-                color="grey"
-                style={{marginTop: 5, marginLeft: 5}}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.detailInfo}>
-            <Text style={styles.font}>Họ và tên</Text>
-            <TouchableOpacity style={{flexDirection: 'row'}}>
-              <Text style={styles.infoView}>Nguyen Minh Hieu</Text>
-              <Icon
-                name="right"
-                size={16}
-                color="grey"
-                style={{marginTop: 5, marginLeft: 5}}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.detailInfo}>
-            <Text style={styles.font}>Giới tính</Text>
-            <TouchableOpacity style={{flexDirection: 'row'}}>
-              <Text style={styles.infoView}>{userProps.gender}</Text>
-              <Icon
-                name="right"
-                size={16}
-                color="grey"
-                style={{marginTop: 5, marginLeft: 5}}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.detailInfo}>
-            <Text style={styles.font}> Email</Text>
-            <TouchableOpacity style={{flexDirection: 'row'}}>
-              <Text style={styles.infoView}>{userProps.email}</Text>
-              <Icon
-                name="right"
-                size={16}
-                color="grey"
-                style={{marginTop: 5, marginLeft: 5}}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.detailInfo}>
-            <Text style={styles.font}>Sinh nhật</Text>
-            <TouchableOpacity style={{flexDirection: 'row'}}>
-              <Text style={styles.infoView}>
-                {moment(user.profile.birthday._seconds).format('MMM Do YY')}
+      {isLoading && (
+        <View style={{flex: 1}}>
+          {/* Header */}
+          <View style={styles.picAndName}>
+            <View style={styles.imgContainer}>
+              <Image style={styles.image} source={{uri: uri}}></Image>
+            </View>
+            <View style={styles.name}>
+              <Text style={{fontSize: 26, color: 'white'}}>
+                {userProps.displayName}
               </Text>
-              <Icon
-                name="right"
-                size={16}
-                color="grey"
-                style={{marginTop: 5, marginLeft: 5}}
-              />
+            </View>
+          </View>
+          {/* Body */}
+          <View style={styles.info}>
+            <View style={styles.detailInfo}>
+              <Text style={styles.font}>Loại tài khoản</Text>
+              <TouchableOpacity style={{flexDirection: 'row'}}>
+                <Text style={styles.infoView}>{userProps.roles}</Text>
+                <Icon
+                  name="right"
+                  size={16}
+                  color="grey"
+                  style={{marginTop: 5, marginLeft: 5}}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.detailInfo}>
+              <Text style={styles.font}>Họ và tên</Text>
+              <TouchableOpacity style={{flexDirection: 'row'}}>
+                <Text style={styles.infoView}>{userProps.displayName}</Text>
+                <Icon
+                  name="right"
+                  size={16}
+                  color="grey"
+                  style={{marginTop: 5, marginLeft: 5}}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.detailInfo}>
+              <Text style={styles.font}>Giới tính</Text>
+              <TouchableOpacity style={{flexDirection: 'row'}}>
+                <Text style={styles.infoView}>{userProps.gender}</Text>
+                <Icon
+                  name="right"
+                  size={16}
+                  color="grey"
+                  style={{marginTop: 5, marginLeft: 5}}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.detailInfo}>
+              <Text style={styles.font}> Email</Text>
+              <TouchableOpacity style={{flexDirection: 'row'}}>
+                <Text style={styles.infoView}>{userProps.email}</Text>
+                <Icon
+                  name="right"
+                  size={16}
+                  color="grey"
+                  style={{marginTop: 5, marginLeft: 5}}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.detailInfo}>
+              <Text style={styles.font}>Sinh nhật</Text>
+              <TouchableOpacity style={{flexDirection: 'row'}}>
+                {userProps.birthday._seconds ? (
+                  <Text style={styles.infoView}>
+                    {moment(userProps.birthday._seconds).format('MMM Do YY')}
+                  </Text>
+                ) : (
+                  <Text>N/A</Text>
+                )}
+                <Icon
+                  name="right"
+                  size={16}
+                  color="grey"
+                  style={{marginTop: 5, marginLeft: 5}}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.detailInfo}>
+              <Text style={styles.font}>Số điện thoại</Text>
+              <TouchableOpacity style={{flexDirection: 'row'}}>
+                <Text style={styles.infoView}>{userProps.phone}</Text>
+                <Icon
+                  name="right"
+                  size={16}
+                  color="grey"
+                  style={{marginTop: 5, marginLeft: 5}}
+                />
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity style={styles.logOutButton} onPress={logOut}>
+              <Text style={{fontSize: 20, color: 'white'}}>Đăng xuất</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.detailInfo}>
-            <Text style={styles.font}>Số điện thoại</Text>
-            <TouchableOpacity style={{flexDirection: 'row'}}>
-              <Text style={styles.infoView}>{userProps.phone}</Text>
-              <Icon
-                name="right"
-                size={16}
-                color="grey"
-                style={{marginTop: 5, marginLeft: 5}}
-              />
-            </TouchableOpacity>
-          </View>
-          <TouchableOpacity style={styles.logOutButton} onPress={logOut}>
-            <Text style={{fontSize: 20, color: 'white'}}>Đăng xuất</Text>
-          </TouchableOpacity>
         </View>
-      </SafeAreaView>
+      )}
     </ScrollView>
   );
 };

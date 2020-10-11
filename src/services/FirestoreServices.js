@@ -120,10 +120,31 @@ function createOrder(order) {
       });
   });
 }
+function getOrders() {
+  return new Promise((resolve, reject) => {
+    firestore()
+      .collection('Orders')
+      .get()
+      .then((querySnapshot) => {
+        const orders = [];
+        querySnapshot.forEach((documentSnapshot) => {
+          const order = documentSnapshot.data();
+          orders.push(order);
+        });
+        resolve(orders);
+        console.log('Vendors: ', orders);
+      })
+      .catch((error) => {
+        console.log(error);
+        reject(error);
+      });
+  });
+}
 export default {
   getVendors,
   getServices,
   getServicesDetail,
   getServicesOfVendor,
+  getOrders,
   createOrder,
 };

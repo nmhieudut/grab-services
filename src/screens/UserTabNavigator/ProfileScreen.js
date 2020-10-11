@@ -162,9 +162,11 @@ const ProfileScreen = ({navigation}) => {
             <View style={styles.detailInfo}>
               <Text style={styles.font}>Sinh nhật</Text>
               <TouchableOpacity style={{flexDirection: 'row'}}>
-                {userProps.birthday._seconds ? (
+                {userProps.birthday ? (
                   <Text style={styles.infoView}>
-                    {moment(userProps.birthday._seconds).format('MMM Do YY')}
+                    {moment(
+                      new Date(userProps.birthday._seconds * 1000),
+                    ).format('MMM Do YYYY')}
                   </Text>
                 ) : (
                   <Text>N/A</Text>

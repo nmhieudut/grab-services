@@ -1,10 +1,10 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-
+import React from 'react';
+import {View, Text} from 'react-native';
+import Orders from '../../modules/main/components/Orders';
 export default function OrderScreen() {
-    return (
-        <View>
-            <Text>OrderScreen</Text>
-        </View>
-    )
+  return (
+    <>
+      <Orders />
+    </>
+  );
 }

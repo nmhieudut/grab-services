@@ -29,6 +29,7 @@
     "react-native-elements": "^2.0.4",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-image-crop-picker": "^0.32.2",
+    "react-native-maps": "0.27.1",
     "react-native-onesignal": "^3.8.1",
     "react-native-paper": "^3.10.1",
     "react-native-reanimated": "^1.13.1",

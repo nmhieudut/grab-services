@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
   useEffect(() => {
     FirestoreServices.getOrders().then((res) => {
       console.log('res', res);

@@ -19,18 +19,27 @@ export default function VendorsDetailScreen({route, navigation}) {
       id: 2,
       serviceImage:
         'https://media.allure.com/photos/5ee11520a9ba330008e32528/16:9/w_2992,h_1683,c_limit/massage.jpg',
-      serviceName: 'Làm đẹp',
-      prices: '200.000 VND',
+      serviceName: 'Làm móng',
+      prices: '400.000 VND',
     },
     {
       id: 3,
       serviceImage:
         'https://media.allure.com/photos/5ee11520a9ba330008e32528/16:9/w_2992,h_1683,c_limit/massage.jpg',
-      serviceName: 'Làm đẹp',
-      prices: '200.000 VND',
+      serviceName: 'Massage',
+      prices: '800.000 VND',
     },
   ];
-
+  const addServices = ({item, checked}) => {
+    const newItems = [...selectedServices];
+    if (checked) {
+      newItems.push(item);
+      setSelectedServices(newItems);
+    } else {
+      var newUncheckedItems = newItems.filter((e) => e.id !== item.id);
+      setSelectedServices(newUncheckedItems);
+    }
+  };
   const renderItem = ({item}) => {
     return (
       <>
@@ -55,17 +64,7 @@ export default function VendorsDetailScreen({route, navigation}) {
               <CheckBox
                 item={item}
                 onSelected={({item, checked}) => {
-                  if (checked) {
-                    const newItems = [...selectedServices];
-                    newItems.push(item);
-                    setSelectedServices(newItems);
-                  } else if (!checked) {
-                    const unCheckedItems = [...selectedServices];
-                    var newUncheckedItems = unCheckedItems.filter(
-                      (e) => e.id !== item.id,
-                    );
-                    setSelectedServices(newUncheckedItems);
-                  }
+                  addServices({item, checked});
                 }}
               />
             )}

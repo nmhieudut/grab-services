@@ -123,7 +123,7 @@ export default function CartDetail(props) {
               mode="date"
               placeholder="Select Date"
               format="YYYY-MM-DD"
-              minDate="2016-05-01"
+              minDate={moment()}
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
               customStyles={{
@@ -144,6 +144,7 @@ export default function CartDetail(props) {
             mode="contained"
             style={{backgroundColor: `${color.PRIMARY}`}}
             loading={isLoading}
+            disabled={isLoading}
             onPress={() => {
               setIsLoading(true);
               // Create order
